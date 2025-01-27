@@ -3,7 +3,7 @@
 """
 
 
-def generate_prompt(test=False):
+def generate_random_prompt(test: bool = False) -> str:
     """Generate a random prompt for use in AI image manipulation.
 
     Args:

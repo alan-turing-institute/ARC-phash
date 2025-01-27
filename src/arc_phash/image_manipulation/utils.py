@@ -2,13 +2,18 @@
     Utility functions for image manipulation
 """
 
+from PIL.Image import Image
 
-def get_resize_tuple(pil_image, target_size=1024):
+
+def get_resize_tuple(pil_image: Image, target_size: int = 1024) -> tuple[int, int]:
     """Calculate resize dimensions based on aspect ratio
 
     Args:
         pil_image: input image
         target_size: target resize. Defaults to 1024.
+
+    Returns:
+        tuple of (new_heigh, new_width)
     """
     if pil_image.size[0] < pil_image.size[1]:
         # Portrait orientation
@@ -30,13 +35,16 @@ def get_resize_tuple(pil_image, target_size=1024):
     )
 
 
-def centre_crop(image, new_width, new_height):
+def centre_crop(image: Image, new_width: int, new_height: int) -> Image:
     """Perform a centre crop on an input image
 
     Args:
         image: input image
         new_width: new width to crop to
         new_height: new height to crop to
+
+    Returns:
+        cropped PIL image
     """
     width, height = image.size
     left = (width - new_width) / 2
@@ -47,12 +55,15 @@ def centre_crop(image, new_width, new_height):
     return image.crop((left, top, right, bottom))
 
 
-def resize_and_crop(pil_image, target_size=1024):
+def resize_and_crop(pil_image: Image, target_size: int = 1024) -> Image:
     """Resize and crop and image for purposes of AI manipulation
 
     Args:
         pil_image: input image
         target_size: target resize. Defaults to 1024.
+
+    Returns:
+        cropped and resized PIL image
     """
     resize_tuple = get_resize_tuple(pil_image, target_size=target_size)
     pil_image = pil_image.resize(resize_tuple)
