@@ -27,7 +27,14 @@ classifiers = [
   "Topic :: Scientific/Engineering",
   "Typing :: Typed",
 ]
-dependencies = []
+dependencies = [
+  "diffusers",
+  "torch",
+  "transformers",
+  "accelerate",
+  "protobuf",
+  "sentencepiece"
+]
 
 [project.optional-dependencies]
 dev = [
