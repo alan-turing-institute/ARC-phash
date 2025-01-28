@@ -33,7 +33,8 @@ dependencies = [
   "transformers",
   "accelerate",
   "protobuf",
-  "sentencepiece"
+  "sentencepiece",
+  "wonderwords"
 ]
 
 [project.optional-dependencies]
