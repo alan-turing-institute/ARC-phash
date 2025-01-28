@@ -77,7 +77,7 @@ class InPainter:
         """
         mask = image.copy()
         mask = mask.convert("L")
-        mask = mask.point(lambda x: 0)
+        mask = mask.point(lambda _: 0)
         blob_size = self.rng.integers(
             self.resize_size // 10, self.resize_size - self.resize_size // 10
         )
