@@ -1,7 +1,5 @@
 """
     Inpainting generation methods
-
-    TODO: save results
 """
 
 from copy import copy
