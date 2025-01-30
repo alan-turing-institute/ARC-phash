@@ -103,21 +103,18 @@ class InPainter:
 
     def _generate_inpainting(self, image: Image, mask: Image = None):
         """Generate inpainting based on a mask, with a randomly generated mask if none
-        is given
+        is given, append to results
 
         Args:
             image: image to inpaint
             mask: mask for inpainting. Defaults to None, will randomly generate a mask
         """
         image = self.resize_image(image)
-        print(type(image))
         mask = self.resize_image(mask) if mask is not None else None
         mask = mask if mask is not None else self.generate_random_mask(image)
-        print(type(mask))
         pars = copy(self.pipe_kwargs)
         pars["image"] = image
         pars["mask_image"] = mask
-        _ = [print(f"{key}, {itm}, {type(itm)}") for key, itm in pars.items()]
         inpaint_image = self.pipe(**pars).images[0]
         self.results.append(
             {"original": image, "inpainted": inpaint_image, "mask": mask}
