@@ -37,6 +37,8 @@ class InPainter:
             self.device = torch.device(
                 "mps" if torch.backends.mps.is_available() else "cpu"
             )
+        else:
+            self.device = device
         self.pipe.to(device)
 
         # image editing
@@ -57,7 +59,7 @@ class InPainter:
             "device": self.device,
             "guidance_scale": kwargs.get("guidance_scale", 4.5),
             "strength": kwargs.get("strength", self.rng.uniform(0.5, 0.89)),
-            "num_inference_steps": kwargs.get("num_inference_steps", 100),
+            "num_inference_steps": kwargs.get("num_inference_steps", 40),
             "safety_checker": kwargs.get("safety_checker"),
             "generator": torch.Generator(device=device),
         }
@@ -108,11 +110,15 @@ class InPainter:
             mask: mask for inpainting. Defaults to None, will randomly generate a mask
         """
         image = self.resize_image(image)
+        print(type(image))
+        mask = self.resize_image(mask) if mask is not None else None
         mask = mask if mask is not None else self.generate_random_mask(image)
-        kwargs = copy(self.pipe_kwargs)
-        kwargs["image"] = image
-        kwargs["mask"] = mask
-        inpaint_image = self.pipe(**kwargs)
+        print(type(mask))
+        pars = copy(self.pipe_kwargs)
+        pars["image"] = image
+        pars["mask_image"] = mask
+        _ = [print(f"{key}, {itm}, {type(itm)}") for key, itm in pars.items()]
+        inpaint_image = self.pipe(**pars).images[0]
         self.results.append(
             {"original": image, "inpainted": inpaint_image, "mask": mask}
         )
