@@ -34,7 +34,9 @@ dependencies = [
   "accelerate",
   "protobuf",
   "sentencepiece",
-  "wonderwords"
+  "wonderwords",
+  "matplotlib",
+  "pdqhash"
 ]
 
 [project.optional-dependencies]

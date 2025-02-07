@@ -3,6 +3,7 @@
 """
 
 from copy import copy
+from typing import Any
 
 import numpy as np
 import torch
@@ -85,7 +86,13 @@ class Img2Img:
         """
         return resize_and_crop(image, target_size=self.resize_size)
 
-    def _generate_img2img(self, image: Image):
+    def update_pars(self, old_pars, **pars: dict[str, Any]):
+        """Update model parameters with new key word arguments"""
+        for key, itm in pars.items():
+            old_pars.update({key: itm})
+        return old_pars
+
+    def _generate_img2img(self, image: Image, **kwargs):
         """Generate img2img generative fill, append to results
 
         Args:
@@ -93,6 +100,7 @@ class Img2Img:
         """
         image = self.resize_image(image)
         pars = copy(self.pipe_kwargs)
+        pars = self.update_pars(pars, **kwargs)
         pars["image"] = image
         img2img_img = self.pipe(**pars).images[0]
         self.results.append(
@@ -102,7 +110,7 @@ class Img2Img:
             }
         )
 
-    def generate_img2img(self, image: Image | list[Image]):
+    def generate_img2img(self, image: Image | list[Image], **kwargs):
         """Generate img2img on either a single input, or on a list of inputs, or
         single image
 
@@ -111,10 +119,10 @@ class Img2Img:
             mask: Mask for inpainting for single image, will gen. Defaults to None.
         """
         if not isinstance(image, list):
-            self._generate_img2img(image=image)
+            self._generate_img2img(image=image, **kwargs)
         else:
             for img in image:
-                self._generate_img2img(image=img["image"])
+                self._generate_img2img(image=img["image"], **kwargs)
 
     def get_results(self):
         """View the results"""

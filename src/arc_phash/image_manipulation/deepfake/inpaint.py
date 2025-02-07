@@ -3,6 +3,7 @@
 """
 
 from copy import copy
+from typing import Any
 
 import numpy as np
 import torch
@@ -101,7 +102,13 @@ class InPainter:
         """
         return resize_and_crop(image, target_size=self.resize_size)
 
-    def _generate_inpainting(self, image: Image, mask: Image = None):
+    def update_pars(self, old_pars, **pars: dict[str, Any]):
+        """Update model parameters with new key word arguments"""
+        for key, itm in pars.items():
+            old_pars.update({key: itm})
+        return old_pars
+
+    def _generate_inpainting(self, image: Image, mask: Image = None, **kwargs):
         """Generate inpainting based on a mask, with a randomly generated mask if none
         is given, append to results
 
@@ -113,6 +120,7 @@ class InPainter:
         mask = self.resize_image(mask) if mask is not None else None
         mask = mask if mask is not None else self.generate_random_mask(image)
         pars = copy(self.pipe_kwargs)
+        pars = self.update_pars(pars, **kwargs)
         pars["image"] = image
         pars["mask_image"] = mask
         inpaint_image = self.pipe(**pars).images[0]
@@ -121,7 +129,7 @@ class InPainter:
         )
 
     def generate_inpainting(
-        self, image: Image | list[dict[str, Image]], mask: Image = None
+        self, image: Image | list[dict[str, Image]], mask: Image = None, **kwargs
     ):
         """Generate inpainting on either a single input, or on a list of inputs with
         dictionary structure:
@@ -132,10 +140,12 @@ class InPainter:
             mask: Mask for inpainting for single image, will gen. Defaults to None.
         """
         if not isinstance(image, list):
-            self._generate_inpainting(image=image, mask=mask)
+            self._generate_inpainting(image=image, mask=mask, **kwargs)
         else:
             for img in image:
-                self._generate_inpainting(image=img["image"], mask=img.get("mask"))
+                self._generate_inpainting(
+                    image=img["image"], mask=img.get("mask"), **kwargs
+                )
 
     def get_results(self):
         """View the results"""
