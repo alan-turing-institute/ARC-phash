@@ -1,3 +1,6 @@
+# Avoid committing the database
+embeddings.db
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

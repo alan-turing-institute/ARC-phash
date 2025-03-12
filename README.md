@@ -21,6 +21,29 @@ python -m pip install .
 
 ## Usage
 
+Ensure you have docker installed and running, then build the image with e.g.
+
+```shell
+docker build -t my_pipeline .
+```
+
+and run it with
+
+```shell
+docker run --rm --volume .:/app my_pipeline
+```
+
+where we have used `--volume` to create a bind mount which will save off a database named `embeddings.db` locally for querying and EDA. For example, run
+
+```shell
+sqlite3 embeddings.db
+```
+
+Then, to view a sample of rows:
+
+```sql
+SELECT * FROM embeddings LIMIT 10;
+```
 
 ## Contributing
 
