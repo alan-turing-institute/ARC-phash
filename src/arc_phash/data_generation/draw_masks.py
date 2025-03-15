@@ -59,9 +59,9 @@ def main(args):
         error_str = f"No images found in {image_dir}"
         raise ValueError(error_str)
     for image_path in image_files:
-        save_dir = f"../data/{data}/masks/"
-
-        draw_mask(image_dir, save_dir, image_path)
+        if image_path.endswith((".png", ".jpg", ".jpeg", ".bmp", ".gif")):
+            save_dir = f"../data/{data}/masks/"
+            draw_mask(image_dir, save_dir, image_path)
 
 
 if __name__ == "__main__":
