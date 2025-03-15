@@ -6,7 +6,7 @@ This folder contains scripts for generating and manipulating data for the ARC-ph
 
 There are three scripts for data generation, `draw_masks.py`, `flip_images.py`, and `perform_inpainting.py`. They should be run in that order unless you wish to have mirrored images with different masks, in which case you should generate the masks first.
 
-You code expects a directory of images placed in the parent folder of the codebase, structured as such `/data/[image_subject]/images/`. Currently the scripts expect `image_subject` to be `people`, `children`, `animals`, or `nature`.
+You code expects a directory of images placed in the parent folder of the codebase, structured as such `/data/[image_subject]/images/`. Currently the scripts expect `image_subject` to be `people`, `animals`, or `nature`.
 
 ### 1. `draw_masks.py`
 
@@ -20,7 +20,7 @@ python draw_masks.py <data>
 
 #### Arguments
 
-- `<data>`: The name of the data type (e.g., `people`, `children`, `animals`, `nature`).
+- `<data>`: The name of the data type (e.g., `people`, `animals`, `nature`).
 
 #### Example
 
@@ -54,7 +54,7 @@ python perform_inpainting.py <data> <model_name>
 
 #### Arguments
 
-- `<data>`: The name of the data type (e.g., `people`, `children`, `animals`, `nature`).
+- `<data>`: The name of the data type (e.g., `people`, `animals`, `nature`).
 - `<model_name>`: The name of the model to use for inpainting (e.g., `runwayml/stable-diffusion-inpainting`).
 
 #### Example
