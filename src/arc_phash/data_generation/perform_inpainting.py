@@ -93,9 +93,8 @@ if __name__ == "__main__":
     python perform_inpainting.py people "runwayml/stable-diffusion-inpainting
 
     model_names:
-        -   "runwayml/stable-diffusion-inpainting" (This one actually works)
-        -   "kandinsky-community/kandinsky-2-2-decoder-inpaint" (This one doesn't)
-        -   "stabilityai/stable-diffusion-2-inpainting" (Neither does this one)
+        -   "runwayml/stable-diffusion-inpainting"
+        -   "diffusers/stable-diffusion-xl-1.0-inpainting-0.1" )
     """
     parser = argparse.ArgumentParser(description="Draw masks on images.")
     parser.add_argument("data", type=str, help="The data type name.")
