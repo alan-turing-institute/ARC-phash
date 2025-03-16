@@ -1,5 +1,6 @@
 """
-ARC-phash: An investigatory repo exploring the relationship between perceptual hashing and in-painting
+ARC-phash: An investigatory repo exploring the relationship between perceptual hashing
+and in-painting
 """
 
 from __future__ import annotations
