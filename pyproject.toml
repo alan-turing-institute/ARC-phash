@@ -28,19 +28,18 @@ classifiers = [
   "Typing :: Typed",
 ]
 dependencies = [
+    "diffusers[torch]>=0.32.2",
     "numpy>=2.2.3",
+    "opencv-python>=4.11.0.86",
     "pillow>=11.1.0",
-    "timm>=1.0.15",
-    "torch>=2.6.0",
     "torchvision>=0.21.0",
+    "tqdm>=4.67.1",
     "transformers>=4.49.0",
 ]
 
-[project.optional-dependencies]
+[dependency-groups]
 dev = [
-  "pytest >=6",
-  "pytest-cov >=3",
-  "pre-commit",
+    "pre-commit>=4.1.0",
 ]
 
 [project.urls]
@@ -49,73 +48,5 @@ Homepage = "https://github.com/alan-turing-institute/ARC-phash"
 Discussions = "https://github.com/alan-turing-institute/ARC-phash/discussions"
 Changelog = "https://github.com/alan-turing-institute/ARC-phash/releases"
 
-[tool.pytest.ini_options]
-minversion = "6.0"
-addopts = ["-ra", "--showlocals", "--strict-markers", "--strict-config"]
-xfail_strict = true
-filterwarnings = [
-  "error",
-]
-log_cli_level = "INFO"
-testpaths = [
-  "tests",
-]
-
-[tool.coverage]
-run.source = ["arc_phash"]
-port.exclude_lines = [
-  'pragma: no cover',
-  '\.\.\.',
-  'if typing.TYPE_CHECKING:',
-]
-
-[tool.mypy]
-files = ["src", "tests"]
-python_version = "3.10"
-show_error_codes = true
-warn_unreachable = true
-disallow_untyped_defs = false
-disallow_incomplete_defs = false
-check_untyped_defs = true
-strict = false
-
-
-[tool.ruff]
-src = ["src"]
-exclude = []
-line-length = 88  # how long you want lines to be
-
-[tool.ruff.format]
-docstring-code-format = true  # code snippets in docstrings will be formatted
-
 [tool.ruff.lint]
-select = [
-  "E", "F", "W", # flake8
-  "B",           # flake8-bugbear
-  "I",           # isort
-  "ARG",         # flake8-unused-arguments
-  "C4",          # flake8-comprehensions
-  "EM",          # flake8-errmsg
-  "ICN",         # flake8-import-conventions
-  "ISC",         # flake8-implicit-str-concat
-  "G",           # flake8-logging-format
-  "PGH",         # pygrep-hooks
-  "PIE",         # flake8-pie
-  "PL",          # pylint
-  "PT",          # flake8-pytest-style
-  "RET",         # flake8-return
-  "RUF",         # Ruff-specific
-  "SIM",         # flake8-simplify
-  "UP",          # pyupgrade
-  "YTT",         # flake8-2020
-  "EXE",         # flake8-executable
-]
-ignore = [
-  "PLR",    # Design related pylint codes
-  "ISC001", # Conflicts with formatter
-]
-unfixable = [
-  "F401",   # Would remove unused imports
-  "F841",   # Would remove unused variables
-]
-flake8-unused-arguments.ignore-variadic-names = true  # allow unused *args/**kwargsisort.required-imports = ["from __future__ import annotations"]
+select = ["E", "F", "W", "I", "UP"]

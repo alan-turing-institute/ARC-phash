@@ -1,4 +1,4 @@
- Data Generation
+# Data Generation
 
 This folder contains scripts for generating and manipulating data for the ARC-phash project. Below is a description of each script and its usage.
 
