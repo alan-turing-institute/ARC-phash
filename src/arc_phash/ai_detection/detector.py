@@ -51,7 +51,11 @@ def load_models(model_str):
         return CustomImageClassificationPipeline(model)
 
     if model_str == "Organika/sdxl-detector":
-        return pipeline("image-classification", model="Organika/sdxl-detector")
+        return pipeline(
+            "image-classification",
+            model="Organika/sdxl-detector",
+            device_map=DEVICE,
+        )
 
     error_str = f"Unknown Model: {model_str}"
     raise ValueError(error_str)
