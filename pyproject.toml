@@ -37,6 +37,9 @@ dev = [
   "pytest >=6",
   "pytest-cov >=3",
   "pre-commit",
+  "pdqhash",
+  "dhash",
+  "ulid"
 ]
 
 [project.urls]
