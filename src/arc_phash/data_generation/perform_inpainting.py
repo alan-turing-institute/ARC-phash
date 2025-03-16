@@ -13,10 +13,6 @@ prompts = {
         "Change the face of this person, so that it looks like a different person. "
         "It should be realistic and high quality."
     ),
-    "children": (
-        "Change the face of this child, so that it looks like a different child. "
-        "It should be realistic and high quality."
-    ),
     "animals": (
         "Change the face of this animal, so that it looks like a different animal. "
         "It should be realistic and high quality."
@@ -73,7 +69,7 @@ def main(args):
 
     for image_filename in tqdm(image_files):
         if image_filename.endswith((".png", ".jpg", ".jpeg", ".bmp", ".gif")):
-            print(f"First image filename: {image_filename}")
+            print(f"Image filename: {image_filename}")
 
             image_path = os.path.join(image_dir, image_filename)
             mask_path = os.path.join(mask_dir, image_filename)
@@ -91,9 +87,8 @@ if __name__ == "__main__":
     python perform_inpainting.py people "runwayml/stable-diffusion-inpainting
 
     model_names:
-        -   "runwayml/stable-diffusion-inpainting" (This one actually works)
-        -   "kandinsky-community/kandinsky-2-2-decoder-inpaint" (This one doesn't)
-        -   "stabilityai/stable-diffusion-2-inpainting" (Neither does this one)
+        -   "runwayml/stable-diffusion-inpainting"
+        -   "diffusers/stable-diffusion-xl-1.0-inpainting-0.1" )
     """
     parser = argparse.ArgumentParser(description="Draw masks on images.")
     parser.add_argument("data", type=str, help="The data type name.")
