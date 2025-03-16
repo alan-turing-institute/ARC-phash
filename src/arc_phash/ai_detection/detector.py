@@ -53,7 +53,7 @@ def load_models(model_str):
     if model_str == "Organika/sdxl-detector":
         return pipeline("image-classification", model="Organika/sdxl-detector")
 
-    error_str = f"Unknown model: {model_str}"
+    error_str = f"Unknown Model: {model_str}"
     raise ValueError(error_str)
 
 
