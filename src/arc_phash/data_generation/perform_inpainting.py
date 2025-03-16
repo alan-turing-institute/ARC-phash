@@ -4,8 +4,6 @@ import os
 import torch
 from diffusers import AutoPipelineForInpainting
 from diffusers.utils import load_image
-
-# from PIL import Image
 from tqdm import tqdm
 
 generator = torch.Generator("mps").manual_seed(92)

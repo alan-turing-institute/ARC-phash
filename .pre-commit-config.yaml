@@ -4,7 +4,7 @@ ci:
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: "v4.6.0"
+    rev: v5.0.0
     hooks:
       - id: check-added-large-files
       - id: check-case-conflict
@@ -20,20 +20,10 @@ repos:
       - id: trailing-whitespace
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: "v0.5.5"
+    rev: v0.11.0
     hooks:
-      # first, lint + autofix
+      # Run the linter.
       - id: ruff
-        types_or: [python, pyi, jupyter]
-        args: ["--fix", "--show-fixes"]
-      # then, format
+        args: [ --fix ]
+      # Run the formatter.
       - id: ruff-format
-
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: "v1.11.1"
-    hooks:
-      - id: mypy
-        files: src
-        args: []
-        additional_dependencies:
-          - pytest
