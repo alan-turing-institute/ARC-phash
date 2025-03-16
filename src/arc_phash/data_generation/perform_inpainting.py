@@ -55,9 +55,9 @@ def main(args):
     model_name = args.model_name
     data = args.data
 
-    image_dir = f"../data/{data}/images/"
-    mask_dir = f"../data/{data}/masks/"
-    inpainted_dir = f"../data/{data}/{model_name.replace('/', '-')}/"
+    image_dir = f"data/{data}/images/"
+    mask_dir = f"data/{data}/masks/"
+    inpainted_dir = f"data/{data}/{model_name.replace('/', '-')}/"
 
     pipeline = AutoPipelineForInpainting.from_pretrained(model_name)
     pipeline.to("mps")

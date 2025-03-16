@@ -3,11 +3,11 @@ import os
 from PIL import Image
 from torchvision import transforms
 
-for data in ["people", "children", "animals", "nature"]:
+for data in ["animals"]:
     for context in ["images", "masks"]:
         # Define the directory containing the images
-        input_dir = f"../data/{data}/{context}/"
-        output_dir = f"../data/{data}/{context}/"
+        input_dir = f"data/{data}/{context}/"
+        output_dir = f"data/{data}/{context}/"
 
         # Create the output directory if it doesn't exist
         os.makedirs(output_dir, exist_ok=True)

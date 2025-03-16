@@ -50,7 +50,7 @@ def draw_mask(image_dir, save_dir, image_name):
 
 def main(args):
     data = args.data
-    image_dir = f"../data/{data}/images/"
+    image_dir = f"data/{data}/images/"
     image_files = [
         f for f in os.listdir(image_dir) if os.path.isfile(os.path.join(image_dir, f))
     ]
@@ -60,7 +60,7 @@ def main(args):
         raise ValueError(error_str)
     for image_path in image_files:
         if image_path.endswith((".png", ".jpg", ".jpeg", ".bmp", ".gif")):
-            save_dir = f"../data/{data}/masks/"
+            save_dir = f"data/{data}/masks/"
             draw_mask(image_dir, save_dir, image_path)
 
 
