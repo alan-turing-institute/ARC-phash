@@ -30,4 +30,3 @@ python run_detection.py <model_name> <image_dir>
 #### Arguments
 - `model_name`: The name of the model to use for detection (e.g., Dafilab/ai-image-detector, Organika/sdxl-detector).
 - `image_dir`: The directory containing the images to be processed.
-
