@@ -15,10 +15,6 @@ prompts = {
         "Change the face of this person, so that it looks like a different person. "
         "It should be realistic and high quality."
     ),
-    "children": (
-        "Change the face of this child, so that it looks like a different child. "
-        "It should be realistic and high quality."
-    ),
     "animals": (
         "Change the face of this animal, so that it looks like a different animal. "
         "It should be realistic and high quality."
@@ -75,7 +71,7 @@ def main(args):
 
     for image_filename in tqdm(image_files):
         if image_filename.endswith((".png", ".jpg", ".jpeg", ".bmp", ".gif")):
-            print(f"First image filename: {image_filename}")
+            print(f"Image filename: {image_filename}")
 
             image_path = os.path.join(image_dir, image_filename)
             mask_path = os.path.join(mask_dir, image_filename)

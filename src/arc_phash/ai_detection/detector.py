@@ -61,5 +61,11 @@ class AIDetector:
     def __init__(self, model_str):
         self.model = load_models(model_str)
 
+    def post_process(self, result):
+        return result[0]["score"] >= 0.5
+
     def detect(self, image):
         return self.model(image)
+
+    def __call__(self, image):
+        return self.post_process(self.detect(image))

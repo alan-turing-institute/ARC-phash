@@ -12,7 +12,7 @@ def main(model_str: AIDetector, image_dir: str):
         if filename.endswith((".png", ".jpg", ".jpeg")):
             image_path = os.path.join(image_dir, filename)
             img = Image.open(image_path)
-            result = detector.detect(img)
+            result = detector(img)
             print(f"Detection result for {filename}: {result}")
 
 
