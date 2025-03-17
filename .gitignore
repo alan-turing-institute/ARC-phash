@@ -160,9 +160,10 @@ Thumbs.db
 *~
 *.swp
 
-# ignore local stuff
-data
-images
-results
-test_dbs
-local_notebooks
+
+# local stuff
+images/
+local_notebooks/
+results/
+test_dbs/
+data/
